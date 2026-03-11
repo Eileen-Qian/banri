@@ -1,11 +1,15 @@
+import { RouterProvider } from "react-router";
+import { router } from "./routes/index";
 import "./assets/scss/all.scss";
-function App() {
+import MessageToast from "./components/MessageToast";
 
+function App() {
   return (
     <>
-      <h1>Home</h1>
+      <MessageToast />
+      <RouterProvider router={router} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
