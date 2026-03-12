@@ -47,7 +47,7 @@ function Login() {
       document.cookie = `hexW2Token=${token}; expires=${new Date(expired)}; path=/hex-2025-react-week7;`;
       axios.defaults.headers.common["Authorization"] = token;
       setTimeout(() => {
-        navigate("/admin");
+        navigate("/admin/products");
       }, 500);
       showSuccess(t("api.loginSuccess"));
     } catch (error) {
