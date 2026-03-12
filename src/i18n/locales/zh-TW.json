@@ -50,6 +50,14 @@
   "home": {
     "title": "首頁"
   },
+  "notFound": {
+    "subtitle": "找不到頁面",
+    "desc": "你找的頁面可能已移除，或是網址輸入有誤。",
+    "backHome": "回首頁",
+    "goShopping": "前往選購",
+    "adminDesc": "此管理頁面不存在。",
+    "backAdmin": "回後台首頁"
+  },
   "validation": {
     "emailRequired": "請輸入 Email",
     "emailFormat": "Email 格式不正確",

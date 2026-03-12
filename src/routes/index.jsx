@@ -5,6 +5,7 @@ import Products from "../views/front/Products";
 import SingleProduct from "../views/front/SingleProduct";
 import Cart from "../views/front/Cart";
 import FrontNotFound from "../views/front/FrontNotFound";
+import AdminNotFound from "../views/back/AdminNotFound";
 import Login from "../views/back/Login";
 import AdminProducts from "../views/back/AdminProducts";
 import CheckOut from "../views/front/CheckOut";
@@ -37,6 +38,10 @@ export const router = createHashRouter([
                 path: 'checkout',
                 element: <CheckOut />
             },
+            {
+                path: '*',
+                element: <FrontNotFound />
+            },
         ]
     }, {
         path: 'login',
@@ -56,10 +61,10 @@ export const router = createHashRouter([
                 path: 'orders',
                 element: <AdminOrders />
             },
+            {
+                path: '*',
+                element: <AdminNotFound />
+            },
         ]
     },
-    {
-        path: '*',
-        element: <FrontNotFound />
-    }
 ])

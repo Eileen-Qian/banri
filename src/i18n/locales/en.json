@@ -50,6 +50,14 @@
   "home": {
     "title": "Home"
   },
+  "notFound": {
+    "subtitle": "Page Not Found",
+    "desc": "The page you're looking for may have been removed or the URL is incorrect.",
+    "backHome": "Back to Home",
+    "goShopping": "Go Shopping",
+    "adminDesc": "This admin page does not exist.",
+    "backAdmin": "Back to Dashboard"
+  },
   "validation": {
     "emailRequired": "Email is required",
     "emailFormat": "Invalid email format",
