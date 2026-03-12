@@ -100,6 +100,7 @@ function CheckOut() {
             <tr>
               <th style={{ width: "100px" }}>{t("common.image")}</th>
               <th style={{ width: "200px" }}>{t("common.productName")}</th>
+              <th style={{ width: "120px" }}>{t("common.unitPrice")}</th>
               <th style={{ width: "200px" }}>{t("common.quantity")}</th>
               <th style={{ width: "120px" }}>{t("common.subtotal")}</th>
             </tr>
@@ -119,6 +120,7 @@ function CheckOut() {
                   />
                 </td>
                 <td>{item.product.title}</td>
+                <td>NT$ {currency(item.product.price)}</td>
                 <td>
                   <span className="fs-3 text-primary">{item.qty}</span>
                 </td>
@@ -132,6 +134,7 @@ function CheckOut() {
         <tfoot>
           <tr>
             <td style={{ width: "500px" }}></td>
+            <td></td>
             <td></td>
             <td style={{ width: "200px" }} className="text-end fw-bold">
               {t("common.total")}

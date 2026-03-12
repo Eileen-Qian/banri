@@ -17,20 +17,12 @@ const fetchCart = async () => {
 function Cart() {
   const [cart, setCart] = useState(null);
   const [loadingCartId, setLoadingCartId] = useState(null);
+  const [isClearingCart, setIsClearingCart] = useState(false);
   const { t } = useTranslation();
   const { showSuccess, showError } = useMessage();
 
   useEffect(() => {
-    const init = async () => {
-      try {
-        const data = await fetchCart();
-        setCart(data);
-      } catch (error) {
-        console.error(error);
-        showError(error.response.data.message);
-      }
-    };
-    init();
+    getCart();
   }, [showError]);
 
   const getCart = async () => {
@@ -54,6 +46,19 @@ function Cart() {
       showError(error.response.data.message);
     } finally {
       setLoadingCartId(null);
+    }
+  };
+
+  const clearCart = async () => {
+    setIsClearingCart(true);
+    try {
+      await axios.delete(`${API_BASE}/api/${API_PATH}/carts`);
+      getCart();
+      showSuccess(t("api.clearCartSuccess"));
+    } catch (error) {
+      showError(error.response.data.message);
+    } finally {
+      setIsClearingCart(false);
     }
   };
 
@@ -87,7 +92,15 @@ function Cart() {
   return (
     <div className="container mt-5">
       <h2 className="mb-4">{t("cart.title")}</h2>
-      <div className="d-flex justify-content-end">
+      <div className="d-flex justify-content-between align-items-center">
+        <button
+          className="btn btn-outline-danger"
+          onClick={clearCart}
+          disabled={isClearingCart}
+        >
+          <i className="bi bi-trash me-1" />
+          {t("cart.clearCart")}
+        </button>
         <NavLink className="nav-link" to="/checkout">
           <button className="btn btn-primary">{t("cart.goCheckout")}</button>
         </NavLink>
@@ -97,6 +110,7 @@ function Cart() {
           <tr>
             <th style={{ width: "100px" }}>{t("common.image")}</th>
             <th>{t("common.productName")}</th>
+            <th style={{ width: "120px" }}>{t("common.unitPrice")}</th>
             <th style={{ width: "200px" }}>{t("common.quantity")}</th>
             <th style={{ width: "120px" }}>{t("common.subtotal")}</th>
             <th style={{ width: "80px" }}>{t("cart.action")}</th>
@@ -113,6 +127,7 @@ function Cart() {
                 />
               </td>
               <td>{item.product.title}</td>
+              <td>NT$ {currency(item.product.price)}</td>
               <td>
                 <div className="input-group" style={{ width: "150px" }}>
                   <button
@@ -184,7 +199,7 @@ function Cart() {
         </tbody>
         <tfoot>
           <tr>
-            <td colSpan="3" className="text-end fw-bold">
+            <td colSpan="4" className="text-end fw-bold">
               {t("common.total")}
             </td>
             <td colSpan="2" className="fw-bold">
