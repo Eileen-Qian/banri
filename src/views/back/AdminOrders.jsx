@@ -37,14 +37,6 @@ function AdminOrders() {
   };
 
   useEffect(() => {
-    const token = document.cookie
-      .split("; ")
-      .find((row) => row.startsWith("hexW2Token="))
-      ?.split("=")[1];
-    if (token) {
-      axios.defaults.headers.common["Authorization"] = token;
-    }
-
     const init = async () => {
       try {
         await fetchOrders();
