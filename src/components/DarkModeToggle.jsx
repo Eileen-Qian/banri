@@ -1,4 +1,4 @@
-import { useTheme } from "../context/ThemeContext";
+import { useTheme } from "../hooks/useTheme";
 
 function DarkModeToggle() {
   const { theme, toggleTheme } = useTheme();
